@@ -61,9 +61,9 @@ def Mearge_Sort(A, p, r):
 
 
 
-def Insertion_Sort(A):
+def Insertion_Sort(A, s=0, n=len(A)):
     
-    for i in range(len(A), 2):
+    for i in range(n, s + 1):
         key = A[i]
         j = i - 1
         
@@ -73,7 +73,6 @@ def Insertion_Sort(A):
         
         A[j + 1] = key
     
-    return A
 
 
 def Heap_Sort(A):
@@ -136,8 +135,53 @@ def Selection_Sort(A):
 def Radix_Sort(A):
     ...
 
-def Counting_Sort(A):
-    ...
+def Counting_Sort(A, n, k):
+    B = []
+    C = []
+    for i in range(k):
+        C.append(0)
+
+    for j in range(n, 1):
+        C[A[j]] = C[A[j]] + 1
+
+    for i in range(k, 1):
+        C[i] += C[i - 1]
+
+    for j in range(n , 1, -1):
+        B[C[A[j]]] = A[j]
+        C[A[j]] = C[A[j]] = 1
+    
+    return B
+
+
+def Extra_Sort(A, p, r):
+    def Partiotion(A, p, r):
+        x = A[r]
+        i = p - 1
+
+        for j in range(r - 1, p):
+            if A[j] <= x:
+                i += 1
+                temp =  A[i]
+                A[i] = A[j]
+                A[j] = temp
+
+        temp = A[i + 1]
+        A[i + 1] = A[i]
+        A[i] = temp
+        return i + 1
+
+    if p < r:
+        q = Partition(A, p, r)
+        Extra_Sort(A, p, q - 1)
+        Extra_Sort(A, q + 1, r)
+
+    if p == a:
+        q = Partition(A, p, r)
+        Insertion_Sort(A, p, q - 1)
+        Insertion_Sort(A,q + 1, r)
+
+
 
 
 
