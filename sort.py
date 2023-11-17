@@ -61,7 +61,7 @@ def Mearge_Sort(A, p, r):
 
 
 
-def Insertion_Sort(A, s=0, n=len(A)):
+def Insertion_Sort(A, s, n):
     
     for i in range(n, s + 1):
         key = A[i]
